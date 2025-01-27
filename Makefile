@@ -357,7 +357,8 @@ GENFLAGS	+=	$(libsbiutils-genflags-y)
 GENFLAGS	+=	$(platform-genflags-y)
 GENFLAGS	+=	$(firmware-genflags-y)
 
-CFLAGS		=	-g -Wall -Werror -ffreestanding -nostdlib -fno-stack-protector -fno-strict-aliasing -ffunction-sections -fdata-sections
+CFLAGS		=	-g -Wall -Werror -ffreestanding -nostdlib -mno-b19758 -fno-stack-protector -fno-strict-aliasing -ffunction-sections -fdata-sections
+#CFLAGS      =   -mno-b19758
 CFLAGS		+=	-fno-omit-frame-pointer -fno-optimize-sibling-calls
 # Optionally supported flags
 ifeq ($(CC_SUPPORT_VECTOR),y)
@@ -381,7 +382,7 @@ CPPFLAGS	+=	$(GENFLAGS)
 CPPFLAGS	+=	$(platform-cppflags-y)
 CPPFLAGS	+=	$(firmware-cppflags-y)
 
-ASFLAGS		=	-g -Wall -nostdlib
+ASFLAGS		=	-g -Wall -nostdlib -mno-b19758
 ASFLAGS		+=	-fno-omit-frame-pointer -fno-optimize-sibling-calls
 ASFLAGS		+=	-fPIE
 # Optionally supported flags

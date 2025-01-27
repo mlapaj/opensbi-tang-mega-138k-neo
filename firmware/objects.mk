@@ -9,8 +9,8 @@
 
 firmware-genflags-y =
 firmware-cppflags-y +=
-firmware-cflags-y +=
-firmware-asflags-y +=
+firmware-cflags-y += -mno-b19758 -matomic
+firmware-asflags-y += -mno-b19758 -matomic
 firmware-ldflags-y +=
 
 ifdef FW_TEXT_START

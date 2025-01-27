@@ -59,7 +59,8 @@ _try_lottery:
 	/* Jump to relocation wait loop if we don't get relocation lottery */
 	lla	a6, _boot_lottery
 	li	a7, BOOT_LOTTERY_ACQUIRED
-	amoswap.w a6, a7, (a6)
+    lw t0, 0(a6)        # Load the word from memory at address in t1 into register t0
+    amoswap.w a6, a7, (a6)
 	bnez	a6, _wait_for_boot_hart
 
 	/* relocate the global table content */
@@ -107,7 +108,7 @@ _bss_zero:
 	 * MDT to avoid generating a double trap and thus entering a
 	 * critical-error state.
 	 */
-	CLEAR_MDT t0
+	//CLEAR_MDT t0
 
 	/* Setup temporary stack */
 	lla	s4, _fw_end
@@ -367,7 +368,7 @@ _skip_trap_handler_hyp:
 	csrw	CSR_MTVEC, a4
 
 	/* Clear MDT here again for all harts */
-	CLEAR_MDT t0
+	//CLEAR_MDT t0
 
 	/* Initialize SBI runtime */
 	csrr	a0, CSR_MSCRATCH
@@ -568,7 +569,7 @@ memcmp:
 	REG_S	t0, (SBI_TRAP_REGS_SIZE + SBI_TRAP_INFO_OFFSET(gva))(sp)
 
 	/* We are ready to take another trap, clear MDT */
-	CLEAR_MDT t0
+	//CLEAR_MDT t0
 .endm
 
 .macro	TRAP_CALL_C_ROUTINE

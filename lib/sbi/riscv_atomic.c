@@ -59,12 +59,18 @@ long atomic_sub_return(atomic_t *atom, long value)
 		switch (size) {							\
 		case 4:								\
 			__asm__ __volatile__ (					\
+				"	 lw t0, %0 \n"		\
+				: "+A" (*__ptr));			\
+			__asm__ __volatile__ (					\
 				"	amoswap.w.aqrl %0, %2, %1\n"		\
 				: "=r" (__ret), "+A" (*__ptr)			\
 				: "r" (__new)					\
 				: "memory");					\
 			break;							\
 		case 8:								\
+			__asm__ __volatile__ (					\
+				"	 lw t0, %0 \n"		\
+				: "+A" (*__ptr));			\
 			__asm__ __volatile__ (					\
 				"	amoswap.d.aqrl %0, %2, %1\n"		\
 				: "=r" (__ret), "+A" (*__ptr)			\

@@ -112,7 +112,7 @@ static int ae350_final_init(bool cold_boot, void *fdt,
 }
 
 static const struct fdt_match andes_ae350_match[] = {
-	{ .compatible = "andestech,ae350" },
+	{ .compatible = "andestech,a25" },
 	{ },
 };
 

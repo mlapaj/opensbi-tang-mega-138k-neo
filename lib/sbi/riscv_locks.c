@@ -53,6 +53,7 @@ void spin_lock(spinlock_t *lock)
 
 	__asm__ __volatile__(
 		/* Atomically increment the next ticket. */
+        "  lw t0, %3 \n"
 		"	amoadd.w.aqrl	%0, %4, %3\n"
 
 		/* Did we get the lock? */
