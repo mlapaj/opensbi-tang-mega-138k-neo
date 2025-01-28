@@ -145,9 +145,9 @@ void __noreturn sbi_hsm_hart_start_finish(struct sbi_scratch *scratch,
 	struct sbi_hsm_data *hdata = sbi_scratch_offset_ptr(scratch,
 							    hart_data_offset);
 
-	if (!__sbi_hsm_hart_change_state(hdata, SBI_HSM_STATE_START_PENDING,
-					 SBI_HSM_STATE_STARTED))
-		sbi_hart_hang();
+	//if (!__sbi_hsm_hart_change_state(hdata, SBI_HSM_STATE_START_PENDING,
+	//				 SBI_HSM_STATE_STARTED))
+	//	sbi_hart_hang();
 
 	next_arg1 = scratch->next_arg1;
 	next_addr = scratch->next_addr;
